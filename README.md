@@ -5,7 +5,7 @@
 A simple resume builder with high ATS parse score
 
 ## Why this is made
-Every job posting has different criteria and requirements. You need to tailor your resume based on those requirements. You need to change your projects, achievements, skills based on those. Also the job responsibilites need to be changed too! Example, you might have different CV for a job posting where Golang is required vs another where the position is based on Spring Boot. In this competetive market we apply for about 30 jobs per week! We needed some fast and easy way to change our resume. Thus Marlin CV was made.   
+Every job posting has different criteria and requirements. You need to tailor your resume based on those requirements. You need to change your projects, achievements, skills based on those. Also the job responsibilites need to be changed too! Example, you might have different CV for a job posting where Golang is required vs another where the position is based on Spring Boot. In this competetive market we apply for about 30 jobs per week! We needed some fast and easy way to change our resume. Thus Marlin CV was made.
 
 There are countless resume builder present in the web. Majority of them are paid. That still leaves us with some good open source and free builder. They are great but doesn't fullfil all the requirements.
 ## Functionalities
@@ -17,9 +17,42 @@ There are countless resume builder present in the web. Majority of them are paid
 - Reorder sections with easy to use drag and drop
 
 ## How to use
-Go to [Marlin CV](https://buet-beecrypt.github.io/marlincv/). Open a file that you have saved earlier or start filling up the sections. Use the render button to render the resume. 
+Go to [Marlin CV](https://buet-beecrypt.github.io/marlincv/). Open a file that you have saved earlier or start filling up the sections. Use the render button to render the resume.
 
 When you are done save it into a local file. To export it as pdf use the `Download as PDF` button. This will load into a new page. You have **Print** the page to export it into pdf.
+
+## Docker Setup
+To run this application using Docker:
+
+1. Build the Docker image:
+   ```bash
+   docker build -t marlincv .
+   ```
+
+2. Run the container:
+   ```bash
+   docker run -d -p 8080:80 marlincv
+   ```
+
+3. Open your browser and navigate to `http://localhost:8080`
+
+**Note**: The Docker build automatically configures the application to run from the root path (`/`) instead of the GitHub Pages path (`/marlincv/`) to avoid asset loading issues.
+
+Alternatively, you can use docker-compose (create a docker-compose.yml file):
+```yaml
+version: '3.8'
+services:
+  marlincv:
+    build: .
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+```
+
+Then run:
+```bash
+docker-compose up -d
+```
 
 ## Known issues
 - No option to add custom sections
@@ -36,4 +69,3 @@ When you are done save it into a local file. To export it as pdf use the `Downlo
 - Add responsiveness
 - Add mor templates
 - Better CSS Support
-
